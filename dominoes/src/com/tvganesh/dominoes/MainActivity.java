@@ -1,5 +1,9 @@
 package com.tvganesh.dominoes;
 
+/* Developed by Tinniam V Ganesh 9 Jan 2013
+ * Domino effect based on Dominos demo by Daniel Murphy at http://www.jbox2d.org/
+ * Uses Box2D physics engine and AndEngine
+ */
 import java.util.Vector;
 
 import org.andengine.engine.camera.Camera;
@@ -137,7 +141,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IAcceleratio
 	
 
 		
-		//Create a platform 1
+		//Create platform 1
 		platform1 = new Sprite(50, 100, this.mPlatformTextureRegion, this.getVertexBufferObjectManager());
 		platformBody1 = PhysicsFactory.createBoxBody(this.mPhysicsWorld, platform1, BodyType.StaticBody, FIXTURE_DEF);	
 		this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(platform1, platformBody1, true, true));
@@ -145,13 +149,14 @@ public class MainActivity extends SimpleBaseGameActivity implements IAcceleratio
 		
 		platform1.setUserData(platformBody1);
 		
-		// Create 10 bricks
+		// Create 37 bricks
 		for(int i=0; i < 37; i++) {
 			
 			  brick = new Sprite(50 + i * 15, 50, this.mBrickTextureRegion, this.getVertexBufferObjectManager());			
 			  brickBody = PhysicsFactory.createBoxBody(this.mPhysicsWorld, brick, BodyType.DynamicBody, FIXTURE_DEF);	  
 			  float angle = brickBody.getAngle();
 			  Log.d("Angle","angle:"+ angle);
+			  // Tilt first 4 bricks
 			  if (i == 0 || i == 1 || i == 2 || i == 3 || i == 4) {
 			      brickBody.setTransform(120/PIXEL_TO_METER_RATIO_DEFAULT,80/PIXEL_TO_METER_RATIO_DEFAULT,(65 - (i*10)) * DEGTORAD);
 			  }
@@ -160,20 +165,21 @@ public class MainActivity extends SimpleBaseGameActivity implements IAcceleratio
 			brick.setUserData(brickBody);
 			
 		}
-		//Create a platform 2
+		//Create platform 2
 		platform2 = new Sprite(100, 200, this.mPlatformTextureRegion, this.getVertexBufferObjectManager());
 		platformBody2 = PhysicsFactory.createBoxBody(this.mPhysicsWorld, platform2, BodyType.StaticBody, FIXTURE_DEF);	
 		this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(platform2, platformBody2, true, true));
 		this.mScene.attachChild(platform2);
 		platform2.setUserData(platformBody2);
 		
-		// Create 10 bricks
+		// Create 37 bricks
 		for(int i=0; i < 37; i++) {
 			
 			  brick = new Sprite(100 + i * 15, 150, this.mBrickTextureRegion, this.getVertexBufferObjectManager());			
 			  brickBody = PhysicsFactory.createBoxBody(this.mPhysicsWorld, brick, BodyType.DynamicBody, FIXTURE_DEF);	  
 			  float angle = brickBody.getAngle();
 			  Log.d("Angle","angle:"+ angle);
+			  // Tilt the last brick backward
 			  if (i == 36) {
 				 
 			      brickBody.setTransform(600/PIXEL_TO_METER_RATIO_DEFAULT,170/PIXEL_TO_METER_RATIO_DEFAULT, 95 * DEGTORAD);
@@ -184,14 +190,14 @@ public class MainActivity extends SimpleBaseGameActivity implements IAcceleratio
 			
 		}
 		
-		//Create a platform 3
+		//Create  platform 3
 		platform3 = new Sprite(40, 300, this.mPlatformTextureRegion, this.getVertexBufferObjectManager());
 		platformBody3 = PhysicsFactory.createBoxBody(this.mPhysicsWorld, platform3, BodyType.StaticBody, FIXTURE_DEF);	
 		this.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(platform3, platformBody3, true, true));
 		this.mScene.attachChild(platform3);
 		platform3.setUserData(platformBody3);
 		
-		// Create 28 bricks
+		// Create 37 bricks
 		for(int i=0; i < 37; i++) {
 			
 			  brick = new Sprite(40 + i * 15, 250, this.mBrickTextureRegion, this.getVertexBufferObjectManager());			
